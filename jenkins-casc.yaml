@@ -1,0 +1,2 @@
+jobs:
+  - file: /app/seedJobs.groovy

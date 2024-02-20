@@ -1,0 +1,10 @@
+plugins:
+  - artifactId: configuration-as-code
+    source:
+      version: 1775.v810dc950b_514
+  - artifactId: job-dsl
+    source:
+      version: 1.87
+  - artifactId: workflow-job
+    source:
+      version: 1400.v7fd111b_ec82f

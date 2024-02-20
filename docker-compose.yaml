@@ -1,0 +1,18 @@
+version: "3.6"
+
+services:
+  core-jenkins:
+    image: core-jenkins:latest
+    container_name: core-jenkins
+    # entrypoint: /bin/sh
+    # command:
+    #   - -c
+    #   - sleep 999999
+    volumes:
+      - shared-data:/home/app/shared
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8080:8080"
+
+volumes:
+  shared-data:
