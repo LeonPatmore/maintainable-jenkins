@@ -1,2 +1,6 @@
 jobs:
   - file: /app/seedJobs.groovy
+security:
+  scriptApproval:
+    approvedSignatures:
+      - staticMethod org.codehaus.groovy.runtime.EncodingGroovyMethods decodeBase64 java.lang.String
