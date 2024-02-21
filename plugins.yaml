@@ -8,3 +8,15 @@ plugins:
   - artifactId: workflow-job
     source:
       version: 1400.v7fd111b_ec82f
+  - artifactId: workflow-aggregator
+    source:
+      version: 596.v8c21c963d92d
+  - artifactId: workflow-cps
+    source:
+      version: 3867.v535458ce43fd
+  - artifactId: http_request
+    source:
+      version: 1.18
+  - artifactId: pipeline-utility-steps
+    source:
+      version: 2.16.2

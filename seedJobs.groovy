@@ -1,40 +1,28 @@
-// seedjob.groovy
-
-// create an array with our two pipelines
-pipelines = ["first-pipeline", "another-pipeline"]
-
-// iterate through the array and call the create_pipeline method
-pipelines.each { pipeline ->
-    println "Creating pipeline ${pipeline}"
-    create_pipeline(pipeline)
-}
-
-// a method that creates a basic pipeline with the given parameter name
-def create_pipeline(String name) {
-    pipelineJob(name) {
-        definition {
-            cps {
-                sandbox(true)
-                script("""
-// this is an example declarative pipeline that says hello and goodbye
+pipelineJob("Seed") {
+    definition {
+        cps {
+            sandbox(true)
+            script("""
 pipeline {
     agent any
     stages {
         stage("Hello") {
             steps {
-                echo "Hello from pipeline ${name}"
-            }
-        }
-        stage("Goodbye") {
-            steps {
-                echo "Goodbye from pipeline ${name}"
+                script {
+                    def response = httpRequest 'https://api.github.com/repos/LeonPatmore/maintainable-jenkins/contents/remoteJobs.groovy'
+                    def json = readJSON text: response.content
+                    def contentEncoded = json["content"]
+                    def content = new String(contentEncoded.decodeBase64())
+                    echo "\${content}"
+                    writeFile file: "jobs.groovy", text: content
+                    jobDsl targets: "jobs.groovy"
+                }
             }
         }
     }
 }
 
 """)
-            }
         }
     }
 }

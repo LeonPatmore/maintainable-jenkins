@@ -6,12 +6,8 @@ RUN mkdir -p /app
 RUN chown jenkins /app
 USER jenkins
 
-COPY plugins.yaml /etc/jenkins/plugins.yaml
-RUN mkdir /app/plugins
-RUN jenkins-plugin-cli --plugin-file /etc/jenkins/plugins.yaml --plugin-download-directory /app/plugins
-
-RUN mkdir /var/jenkins_home/plugins
-RUN cp -r -p /app/plugins/. /var/jenkins_home/plugins/.
+COPY plugins.yaml /app/plugins.yaml
+RUN jenkins-plugin-cli --plugin-file /app/plugins.yaml
 
 COPY --chown=jenkins seedJobs.groovy /app/seedJobs.groovy
 COPY --chown=jenkins jenkins-casc.yaml /app/jenkins-casc.yaml
