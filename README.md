@@ -38,6 +38,7 @@ The docker image should be as simple as possible. Ideally we should expose docke
 ## Further Improvements
 
 - You can pass in the JCasC config file via a volume, allowing you to update this file without rebuilding the image.
+- Deploy on K8.
 
 ## Docs
 
